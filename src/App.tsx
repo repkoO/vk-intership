@@ -1,10 +1,11 @@
+import FactComponent from "./components/FactComponent/FactComponent"
 
 
 function App() {
 
   return (
     <>
-      <div>hello worlds</div>
+      <FactComponent />
     </>
   )
 }
