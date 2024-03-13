@@ -21,9 +21,8 @@ function FactComponent() {
       return data;
     }
 
-  const {data, isError, isLoading} = useQuery({queryKey: ['FactKey'], queryFn: getData});
+  const { data } = useQuery({queryKey: ['FactKey'], queryFn: getData});
   console.log(data);
-
 
   return (
     <div className='App'>
