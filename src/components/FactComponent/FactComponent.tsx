@@ -1,9 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useRef, useState } from "react";
-
-interface catFace {
-  data: Data
-}
+import { useRef } from "react";
 
 interface Data {
   fact: string,
@@ -14,19 +10,27 @@ function FactComponent() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
 
-    const getData = async () => {
+    const getData = async (): Promise<Data> => {
       const response = await fetch('https://catfact.ninja/fact');
       const data = await response.json();
-      textareaRef.current.focus();
+      if (textareaRef.current) textareaRef.current.focus();
       return data;
     }
 
-  const { data } = useQuery({queryKey: ['FactKey'], queryFn: getData});
+  const { data, refetch } = useQuery({queryKey: ['FactKey'], queryFn: getData, enabled: false});
 
   return (
-    <div className='App'>
-      <textarea ref={textareaRef} value={data?.fact}  cols='55' rows="5"></textarea>
-    </div>
+    <>
+      <h1>FactComponent</h1>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px'
+      }}>
+        <button onClick={() => refetch()}>Получить факт</button>
+        <textarea ref={textareaRef} value={data?.fact}  cols={55} rows={5}></textarea>
+      </div>
+    </>
   );
 }
 
