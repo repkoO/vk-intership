@@ -7,13 +7,13 @@ interface Data {
 }
 
 function FactComponent() {
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-
-    const getData = async (): Promise<Data> => {
-      const response = await fetch('https://catfact.ninja/fact');
-      const data = await response.json();
-      if (textareaRef.current) textareaRef.current.focus();
+  const getData = async (): Promise<Data> => {
+    const response = await fetch('https://catfact.ninja/fact');
+    const data = await response.json();
+    if (textareaRef.current) textareaRef.current.focus();
       return data;
     }
 
