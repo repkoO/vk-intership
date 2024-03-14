@@ -56,8 +56,6 @@ function AgeComponent() {
     queryFn: fetchAge,
     enabled: fetchEnabled
   });
-  console.log(data);
-
 
   const handleFetch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
